@@ -11,7 +11,7 @@ let users = [
 ];
 
 apiRouter.get("/", (req, res) => {
-   res.send(users);
+   res.status(200).send(users);
 });
 
 apiRouter.get("/:id", (req, res) => {
@@ -19,7 +19,7 @@ apiRouter.get("/:id", (req, res) => {
    const findUser = users.filter((user) => {
       return user.id == id;
    });
-   res.send(findUser);
+   res.status(200).send(findUser);
 });
 
 apiRouter.post("/", (req, res) => {
@@ -29,7 +29,7 @@ apiRouter.post("/", (req, res) => {
    const UserId = { ...user, id: Id };
 
    users.push(UserId);
-   res.send(`User ${user.firstName} ${user.lastname} has been added.`);
+   res.status(200).send(`User ${user.firstName} ${user.lastname} has been added.`);
 });
 
 apiRouter.delete("/:id", (req, res) => {
@@ -37,7 +37,7 @@ apiRouter.delete("/:id", (req, res) => {
    users = users.filter((user) => {
       return user.id != id;
    });
-   res.send(`The user with id ${id} has been deleted.`);
+   res.status(200).send(`The user with id ${id} has been deleted.`);
 });
 
 apiRouter.patch("/:id", (req, res) => {
@@ -49,7 +49,7 @@ apiRouter.patch("/:id", (req, res) => {
     if (lastname) user.lastname = lastname;
     if (city) user.city = city;
 
-    res.send(`User with the id ${id} has been modified.`)
+    res.status(200).send(`User with the id ${id} has been modified.`)
         
 })
 
