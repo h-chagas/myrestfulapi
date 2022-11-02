@@ -1,5 +1,6 @@
 const express = require('express');
 const apiRouter = express.Router();
+const { v4: uuidv4 } = require('uuid');
 
 // app.use( express.json() );
 
@@ -17,8 +18,13 @@ apiRouter.get('/', (req, res) => {
 
 apiRouter.post('/', (req, res) => {
     const user = req.body;
-    users.push(user);
+
+    const Id = uuidv4();
+    const UserId={...user, id: Id};
+
+    users.push(UserId);
     res.send(`User ${user.firstName} ${user.lastname} has been added.`)
+
 
 })
 
