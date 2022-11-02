@@ -1,8 +1,11 @@
 const express = require('express');
+const apiRouter = require('./routes/users');
 const app = express();
 
-
 app.use( express.json() );
+
+//GET requests
+app.use('/users', apiRouter);
 
 app.get('/tshirt', (req, res) => {
     res.status(200).send({
