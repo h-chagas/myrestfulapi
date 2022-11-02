@@ -40,4 +40,17 @@ apiRouter.delete("/:id", (req, res) => {
    res.send(`The user with id ${id} has been deleted.`);
 });
 
+apiRouter.patch("/:id", (req, res) => {
+    const { id } = req.params;
+    const { firstName, lastname, city } = req.body;
+    const user = users.find( (user) => user.id == id )
+
+    if (firstName) user.firstName = firstName;
+    if (lastname) user.lastname = lastname;
+    if (city) user.city = city;
+
+    res.send(`User with the id ${id} has been modified.`)
+        
+})
+
 module.exports = apiRouter;
